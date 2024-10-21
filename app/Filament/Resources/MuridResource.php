@@ -11,10 +11,12 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Exports\ProductExporter;
 
 class MuridResource extends Resource
 {
@@ -70,7 +72,11 @@ class MuridResource extends Resource
                             
             ])
             ->recordAction(Tables\Actions\ViewAction::class) 
-            ->recordUrl(null);
+            ->recordUrl(null)
+            ->headerActions([
+                ExportAction::make()
+                    ->exporter(ProductExporter::class)
+            ]);;
     }
 
     public static function getRelations(): array
