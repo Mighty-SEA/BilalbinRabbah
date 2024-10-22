@@ -59,7 +59,8 @@ class TuPanelProvider extends PanelProvider
             ->brandName('MDT Bilal bin Rabbah')
             ->plugin(
                 \Hasnayeen\Themes\ThemesPlugin::make()
-            );
+            )
+            ->databaseNotifications();
     
     }
 }
