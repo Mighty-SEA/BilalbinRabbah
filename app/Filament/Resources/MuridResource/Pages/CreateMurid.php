@@ -9,4 +9,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateMurid extends CreateRecord
 {
     protected static string $resource = MuridResource::class;
+    protected static ?string $title = 'Custom Page Title';
+
 }

@@ -11,8 +11,15 @@ class murid extends Model
     protected $guarded = [];
     use HasFactory;
 
-    public function getJenisKelaminLabelAttribute()
-    {
-        return $this->jenis_kelamin == 0 ? 'Laki-laki' : 'Perempuan';
+    public function spp(){
+        return $this->hasMany(murid::class, 'nis', 'nis');
     }
+
+
+
+    public function kelas(){
+        return $this->hasMany(kelas1::class, 'nis', 'nis');
+    }
+
+    
 }

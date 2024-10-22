@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\MuridExporter;
 use App\Filament\Resources\MuridResource\Pages;
 use App\Filament\Resources\MuridResource\RelationManagers;
 use App\Models\Murid;
@@ -17,12 +18,14 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Exports\ProductExporter;
+use Filament\Actions\Exports\Enums\ExportFormat;
 
 class MuridResource extends Resource
 {
     protected static ?string $model = Murid::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
 
     public static function form(Form $form): Form
     {
@@ -75,9 +78,9 @@ class MuridResource extends Resource
             ->recordUrl(null)
             ->headerActions([
                 ExportAction::make()
-                    ->exporter(ProductExporter::class)
-            ]);;
-    }
+                    ->exporter(MuridExporter::class)
+            ]);
+    }   
 
     public static function getRelations(): array
     {
