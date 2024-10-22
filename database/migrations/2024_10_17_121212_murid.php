@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('murid' , function(Blueprint $table){
             $table -> id();
-            $table -> bigInteger('nis')->unique();
-            $table -> bigInteger('nik')->unique();
+            $table -> bigInteger('nis');
+            $table -> bigInteger('nisn');
+            $table -> bigInteger('nik');
             $table -> string('nama');
             $table -> integer('jenis_kelamin');
             $table -> string('alamat');

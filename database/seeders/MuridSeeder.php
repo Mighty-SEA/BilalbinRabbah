@@ -19,6 +19,7 @@ class MuridSeeder extends Seeder
         for($i = 0; $i < 10000; $i++){
             DB::table('murid')->insert([
                 'nis' => $faker->unique()->numberBetween(100000, 999999),
+                'nisn' => $faker->unique()->numberBetween(1000000000, 9999999999),
                 'nik' => $faker->unique()->numberBetween(1000000000000000, 9999999999999999),
                 'nama' => $faker->name,
                 'jenis_kelamin' => $faker->numberBetween(0, 1), // 0 untuk perempuan, 1 untuk laki-laki
