@@ -6,17 +6,9 @@ use App\Filament\Resources\GuruResource\Pages;
 use App\Filament\Resources\GuruResource\RelationManagers;
 use App\Models\Guru;
 use Filament\Forms;
-<<<<<<< HEAD
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-=======
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
->>>>>>> 83dcdb33ae5aff8d9ac736e312d61c9395b3bc9a
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -31,11 +23,7 @@ class GuruResource extends Resource
     {
         return $form
             ->schema([
-<<<<<<< HEAD
                 //
-=======
-                TextInput::make('nama')
->>>>>>> 83dcdb33ae5aff8d9ac736e312d61c9395b3bc9a
             ]);
     }
 
@@ -43,12 +31,7 @@ class GuruResource extends Resource
     {
         return $table
             ->columns([
-<<<<<<< HEAD
                 //
-=======
-                TextColumn::make('id'),
-                TextColumn::make('nama')
->>>>>>> 83dcdb33ae5aff8d9ac736e312d61c9395b3bc9a
             ])
             ->filters([
                 //
