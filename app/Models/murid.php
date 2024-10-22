@@ -11,12 +11,4 @@ class murid extends Model
     protected $guarded = [];
     use HasFactory;
 
-<<<<<<< HEAD
-
-=======
-    public function getJenisKelaminLabelAttribute()
-    {
-        return $this->jenis_kelamin == 0 ? 'Laki-laki' : 'Perempuan';
-    }
->>>>>>> 5d87436 (	new file:   .editorconfig)
 }

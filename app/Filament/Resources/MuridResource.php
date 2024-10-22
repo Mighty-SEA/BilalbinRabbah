@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Filament\Resources;
-
+use Illuminate\Support\Collection;
 use App\Filament\Resources\MuridResource\Pages;
 use App\Filament\Resources\MuridResource\RelationManagers;
 use App\Models\Murid;
@@ -11,17 +11,25 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Filament\Actions\PromoteBulkAction;
+use Filament\Notifications\Notification;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Exports\MuridExporter;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Actions\Exports\Enums\ExportFormat;
 
 class MuridResource extends Resource
 {
     protected static ?string $model = Murid::class;
-
+    protected static ?string $navigationLabel = 'Murid';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
+    
     public static function form(Form $form): Form
     {
         return $form
@@ -32,8 +40,8 @@ class MuridResource extends Resource
                 TextInput::make('nama'),
                 TextInput::make('jenis_kelamin'),
                 TextInput::make('alamat'),
-                DatePicker::make('tempat_lahir'),
-                TextInput::make('tanggal_lahir'),
+                DatePicker::make('tanggal_lahir'),
+                TextInput::make('tempat_lahir'),
                 TextInput::make('asal_sekolah'),
                 TextInput::make('kelas'),
                 DatePicker::make('tanggal_masuk'),
@@ -50,27 +58,49 @@ class MuridResource extends Resource
                 TextColumn::make('nisn'),
                 TextColumn::make('nik'),
                 TextColumn::make('nama'),
+                TextColumn::make('kelas'),
                 TextColumn::make('jenis_kelamin')
-                ->getStateUsing(function ($record) {
-                    return $record->jenis_kelamin == 0 ? 'Laki-laki' : 'Perempuan';
-                }),
 
             ])
-            ->filters([
-                //
+            ->filters([ // Menambahkan filter berdasarkan kelas
+               
             ])
+            ->headerActions([
+                ExportAction::make()
+                    ->exporter(MuridExporter::class)
+            ])
+    
             ->actions([
             Tables\Actions\EditAction::make(),
             Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ])
+                BulkAction::make('delete')
+            ->requiresConfirmation()
+            ->action(fn (Collection $records) => $records->each->delete()),
+
+                BulkAction::make('naikKelas')
+                    ->label('Naik Kelas')
+                    ->action(function (Collection $records) {
+                        $records->each(function ($record) {
+                            if ($record->kelas < 7) { // Membatasi maksimal kelas 6
+                                $record->update([
+                                    'kelas' => $record->kelas + 1,
+                                ]);
+                            } else {
+                                // Opsional: Tambahkan notifikasi jika kelas sudah maksimal
+                                Notification::make()
+                                    ->title('Sudah Lulus')
+                                    ->warning()
+                                    ->send();
+                            }
+                        });
+                    })
+                    ->requiresConfirmation()
+                    ->icon('heroicon-o-arrow-up'),
+                
+            ]);
                             
-            ])
-            ->recordAction(Tables\Actions\ViewAction::class) 
-            ->recordUrl(null);
     }
 
     public static function getRelations(): array

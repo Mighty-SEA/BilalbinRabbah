@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\GuruResource\Pages;
-use App\Filament\Resources\GuruResource\RelationManagers;
-use App\Models\Guru;
+use App\Filament\Resources\SppResource\Pages;
+use App\Filament\Resources\SppResource\RelationManagers;
+use App\Models\Spp;
+use App\Models\murid;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,17 +17,22 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class GuruResource extends Resource
+class SppResource extends Resource
 {
-    protected static ?string $model = Guru::class;
-    protected static ?string $navigationLabel = 'Guru';
+    protected static ?string $model = Spp::class;
+    protected static ?string $navigationLabel = 'SPP';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('nama')
+                Select::make('nis')
+                ->label('NIS')
+                ->options(murid::all()->pluck('nama', 'nis'))
+                ->searchable(),
+                TextInput::make('Uang')
+                
             ]);
     }
 
@@ -33,8 +40,9 @@ class GuruResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('nama')
+                TextColumn::make('nis'),
+                TextColumn::make('murid.nama'),
+                TextColumn::make('uang'),
             ])
             ->filters([
                 //
@@ -59,9 +67,9 @@ class GuruResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListGurus::route('/'),
-            'create' => Pages\CreateGuru::route('/create'),
-            'edit' => Pages\EditGuru::route('/{record}/edit'),
+            'index' => Pages\ListSpps::route('/'),
+            'create' => Pages\CreateSpp::route('/create'),
+            'edit' => Pages\EditSpp::route('/{record}/edit'),
         ];
     }
 }

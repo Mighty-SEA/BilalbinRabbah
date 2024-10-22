@@ -12,20 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('murid' , function(Blueprint $table){
-            $table -> id();
-            $table -> bigInteger('nis');
-            $table -> bigInteger('nisn');
-            $table -> bigInteger('nik');
-            $table -> string('nama');
-            $table -> integer('jenis_kelamin');
-            $table -> string('alamat');
-            $table -> string('tempat_lahir');
-            $table -> date('tanggal_lahir');
-            $table -> string('asal_sekolah');
+            $table -> id()->nullable;
+            $table -> bigInteger('nis')->unique()->nullable;
+            $table -> bigInteger('nisn')->unique()->nullable;
+            $table -> bigInteger('nik')->unique()->nullable;
+            $table -> string('nama')->nullable;
+            $table -> string('jenis_kelamin')->nullable;
+            $table -> string('alamat')->nullable;
             $table -> integer('kelas');
-            $table -> date('tanggal_masuk');
-            $table -> string('nama_ayah');
-            $table -> string('nama_ibu');  
+            $table -> string('tempat_lahir')->nullable;
+            $table -> date('tanggal_lahir')->nullable;
+            $table -> string('asal_sekolah')->nullable;
+            $table -> date('tanggal_masuk')->nullable;
+            $table -> string('nama_ayah')->nullable;
+            $table -> string('nama_ibu')->nullable;  
             $table -> timestamps();
         });
     }
