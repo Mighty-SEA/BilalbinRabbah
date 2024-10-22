@@ -27,7 +27,7 @@ class MuridSeeder extends Seeder
                 'tempat_lahir' => $faker->city,
                 'tanggal_lahir' => $faker->date(),
                 'asal_sekolah' => $faker->company,
-                'kelas' => $faker->numberBetween(1,6),
+                'kelas' => $faker->numberBetween(1,3),
                 'tanggal_masuk' => $faker->date(),
                 'nama_ayah' => $faker->name('male'),
                 'nama_ibu' => $faker->name('female'),

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\MuridExporter;
 use App\Filament\Resources\MuridResource\Pages;
 use App\Filament\Resources\MuridResource\RelationManagers;
 use App\Models\Murid;
@@ -9,14 +10,16 @@ use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Exports\ProductExporter;
+use Illuminate\Support\Collection;
 
 class MuridResource extends Resource
 {
@@ -49,13 +52,15 @@ class MuridResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nis'),
-                TextColumn::make('nisn'),
-                TextColumn::make('nik'),
                 TextColumn::make('nama'),
                 TextColumn::make('jenis_kelamin')
                 ->getStateUsing(function ($record) {
                     return $record->jenis_kelamin == 0 ? 'Laki-laki' : 'Perempuan';
                 }),
+                TextColumn::make('kelas')
+                ->getStateUsing(function ($record){
+                    return $record->kelas == 7 ? 'lulus' : $record->kelas;
+                })
 
             ])
             ->filters([
@@ -68,14 +73,31 @@ class MuridResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                ])
-                            
+                ]),
+                
+                BulkAction::make('naikkelas')
+                ->label('Naik Kelas')
+                ->action(function (Collection $record){
+                    $record->each(function ($record){
+                        if ($record->kelas < 7 ){
+                            $record -> update([
+                                'kelas' => $record->kelas + 1,
+                            ]);
+                        }
+                        else {
+                            Notification::make()
+                                ->title('Sudah Lulus')
+                                ->warning()
+                                ->send();
+                        }
+                    });
+                })
             ])
             ->recordAction(Tables\Actions\ViewAction::class) 
             ->recordUrl(null)
             ->headerActions([
                 ExportAction::make()
-                    ->exporter(ProductExporter::class)
+                    ->exporter(MuridExporter::class)
             ]);;
     }
 
