@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Exports\MuridExporter;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Actions\Exports\Enums\ExportFormat;
+use Filament\Forms\Components\Select;
 
 class MuridResource extends Resource
 {
@@ -38,7 +39,14 @@ class MuridResource extends Resource
                 TextInput::make('nisn'),
                 TextInput::make('nik'),
                 TextInput::make('nama'),
-                TextInput::make('jenis_kelamin'),
+                Select::make('jenis_kelamin')
+                ->options([
+                    1 => 'Perempuan',
+                    0 => 'Laki-Laki',
+                ])
+                ->required()
+                ->placeholder(''),
+
                 TextInput::make('alamat'),
                 DatePicker::make('tanggal_lahir'),
                 TextInput::make('tempat_lahir'),
@@ -60,8 +68,9 @@ class MuridResource extends Resource
                 TextColumn::make('nama'),
                 TextColumn::make('kelas'),
                 TextColumn::make('jenis_kelamin')
-
-            ])
+                ->label('Jenis Kelamin')
+                ->formatStateUsing(fn ($state) => $state === 1 ? 'Laki-Laki' : 'Perempuan'),
+                ])
             ->filters([ // Menambahkan filter berdasarkan kelas
                
             ])

@@ -17,7 +17,7 @@ return new class extends Migration
             $table -> bigInteger('nisn')->unique()->nullable;
             $table -> bigInteger('nik')->unique()->nullable;
             $table -> string('nama')->nullable;
-            $table -> string('jenis_kelamin')->nullable;
+            $table -> integer('jenis_kelamin')->nullable;
             $table -> string('alamat')->nullable;
             $table -> integer('kelas');
             $table -> string('tempat_lahir')->nullable;
