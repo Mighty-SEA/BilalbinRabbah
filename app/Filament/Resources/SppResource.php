@@ -7,6 +7,7 @@ use App\Filament\Resources\SppResource\RelationManagers;
 use App\Models\Spp;
 use App\Models\murid;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -16,6 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+
 
 class SppResource extends Resource
 {
@@ -30,7 +32,26 @@ class SppResource extends Resource
                 Select::make('nis')
                 ->label('NIS')
                 ->options(murid::all()->pluck('nama', 'nis'))
-                ->searchable(),
+                ->searchable()
+                ->placeholder(''),
+                Select::make('bulan')
+                ->label('Bulan')
+                ->options([
+                '1' => 'Januari',
+                '2' => 'Februari',
+                '3' => 'Maret',
+                '4' => 'April',
+                '5' => 'Mei',
+                '6' => 'Juni',
+                '7' => 'Juli',
+                '8' => 'Agustus',
+                '9' => 'September',
+                '10' => 'Oktober',
+                '11' => 'November',
+                '12' => 'Desember',
+            ])
+            ->placeholder( ''),
+                Textinput::make('tahun'),
                 TextInput::make('Uang')
                 
             ]);
@@ -42,6 +63,25 @@ class SppResource extends Resource
             ->columns([
                 TextColumn::make('nis'),
                 TextColumn::make('murid.nama'),
+                TextColumn::make('bulan')
+                ->label('Bulan')
+                ->formatStateUsing(function ($state) {
+                    return match ($state) {
+                        1 => 'Januari',
+                        2 => 'Februari',
+                        3 => 'Maret',
+                        4 => 'April',
+                        5 => 'Mei',
+                        6 => 'Juni',
+                        7 => 'Juli',
+                        8 => 'Agustus',
+                        9 => 'September',
+                        10 => 'Oktober',
+                        11 => 'November',
+                        12 => 'Desember',
+                    };
+                }),
+                TextColumn::make('tahun'),
                 TextColumn::make('uang'),
             ])
             ->filters([

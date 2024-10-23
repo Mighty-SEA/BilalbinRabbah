@@ -11,24 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('spp', function(Blueprint $table){
+        Schema::create('pembayaran', function (Blueprint $table) {
             $table-> id ();
             $table-> bigInteger ('nis');
             $table-> integer ('bulan');
             $table-> integer ('tahun');
             $table-> integer ('uang');
-
+            $table-> string  ('jenis');
             $table-> foreign('nis')->references('nis')->on('murid');
             $table-> timestamps();
             
-    });
-}
+        });
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('spp');
+        Schema::dropIfExists('pembayaran');
     }
 };
