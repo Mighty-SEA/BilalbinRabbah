@@ -43,13 +43,14 @@ class MuridResource extends Resource
                 TextInput::make('kelas'),
                 DatePicker::make('tanggal_masuk'),
                 TextInput::make('nama_ayah'),
-                TextInput::make('nama_ibu'),  
+                TextInput::make('nama_ibu'),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+        ->paginated([10, 25, 50, 100])
             ->columns([
                 TextColumn::make('nis'),
                 TextColumn::make('nama'),
@@ -74,7 +75,7 @@ class MuridResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-                
+
                 BulkAction::make('naikkelas')
                 ->label('Naik Kelas')
                 ->action(function (Collection $record){
@@ -93,7 +94,7 @@ class MuridResource extends Resource
                     });
                 })
             ])
-            ->recordAction(Tables\Actions\ViewAction::class) 
+            ->recordAction(Tables\Actions\ViewAction::class)
             ->recordUrl(null)
             ->headerActions([
                 ExportAction::make()

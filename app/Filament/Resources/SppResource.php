@@ -61,7 +61,7 @@ class SppResource extends Resource
             ->columns([
                 TextColumn::make('nis'),
                 TextColumn::make('murid.nama'),
-                TextColumn::make('uang'),
+                TextColumn::make('uang')->money('IDR'),
                 TextColumn::make('bulan'),
                 TextColumn::make('tahun'),
             ])
