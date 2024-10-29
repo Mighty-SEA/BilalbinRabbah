@@ -25,7 +25,8 @@ class MuridResource extends Resource
 {
     protected static ?string $model = Murid::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+    protected static ?string $navigationLabel = 'Data Murid';
 
     public static function form(Form $form): Form
     {
@@ -52,12 +53,12 @@ class MuridResource extends Resource
         return $table
         ->paginated([10, 25, 50, 100])
             ->columns([
-                TextColumn::make('nis'),
+                TextColumn::make('nis')->visibleFrom('md'),
                 TextColumn::make('nama'),
                 TextColumn::make('jenis_kelamin')
                 ->getStateUsing(function ($record) {
                     return $record->jenis_kelamin == 0 ? 'Laki-laki' : 'Perempuan';
-                }),
+                })->visibleFrom('md'),
                 TextColumn::make('kelas')
                 ->getStateUsing(function ($record){
                     return $record->kelas == 7 ? 'lulus' : $record->kelas;

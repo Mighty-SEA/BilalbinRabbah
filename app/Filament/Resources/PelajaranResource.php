@@ -14,20 +14,44 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Section;
 
 class PelajaranResource extends Resource
 {
     protected static ?string $model = Pelajaran::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-book-open';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('kode_pelajaran'),
-                TextInput::make('nama_pelajaran'),
-                TextInput::make('tahun')
+                Section::make('Pelajaran Details') // You can give a title to the section
+                    ->columns([
+                        'sm' => 3,
+                        'xl' => 6,
+                        '2xl' => 8,
+                    ])
+                    ->schema([
+                        TextInput::make('kode_pelajaran')
+                            ->columnSpan([
+                                'sm' => 4,
+                                'xl' => 3,
+                                '2xl' => 2,
+                            ]),
+                        TextInput::make('nama_pelajaran')
+                            ->columnSpan([
+                                'sm' => 2,
+                                'xl' => 3,
+                                '2xl' => 2,
+                            ]),
+                        TextInput::make('tahun')
+                            ->columnSpan([
+                                'sm' => 4,
+                                'xl' => 3,
+                                '2xl' => 2,
+                            ]),
+                    ]),
             ]);
     }
 

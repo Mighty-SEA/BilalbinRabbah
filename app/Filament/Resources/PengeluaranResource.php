@@ -2,29 +2,36 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\NilaiResource\Pages;
-use App\Filament\Resources\NilaiResource\RelationManagers;
-use App\Models\Nilai;
+use App\Filament\Resources\PengeluaranResource\Pages;
+use App\Filament\Resources\PengeluaranResource\RelationManagers;
+use App\Models\Pengeluaran;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Date;
 
-class NilaiResource extends Resource
+class PengeluaranResource extends Resource
 {
-    protected static ?string $model = Nilai::class;
+    protected static ?string $model = Pengeluaran::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                TextInput::make('id_pengeluaran'),
+                TextInput::make('nama_pengeluaran'),
+                TextInput::make('uang'),
+                DatePicker::make('tanggal')
             ]);
     }
 
@@ -32,16 +39,10 @@ class NilaiResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nis'),
-                TextColumn::make('murid.nama')->label('nama'),
-                TextColumn::make('pelajaran.nama_pelajaran'),
-                TextColumn::make('nilai_tugas'),
-                TextColumn::make('nilai_uts'),
-                TextColumn::make('nilai_uas'),
-                TextColumn::make('nilai_rapot'),
-                TextColumn::make('pelajaran.tahun')->label('tahun')
-
-
+                TextColumn::make('id_pengeluaran'),
+                TextColumn::make('nama_pengeluaran'),
+                TextColumn::make('uang'),
+                TextColumn::make('tanggal')
             ])
             ->filters([
                 //
@@ -66,9 +67,9 @@ class NilaiResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListNilais::route('/'),
-            'create' => Pages\CreateNilai::route('/create'),
-            'edit' => Pages\EditNilai::route('/{record}/edit'),
+            'index' => Pages\ListPengeluarans::route('/'),
+            'create' => Pages\CreatePengeluaran::route('/create'),
+            'edit' => Pages\EditPengeluaran::route('/{record}/edit'),
         ];
     }
 }
