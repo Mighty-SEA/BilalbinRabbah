@@ -18,7 +18,7 @@ class ListMurids extends ListRecords
             Actions\CreateAction::make(),
         ];
 
-        
+
     }
 
     public function getTabs(): array
@@ -36,9 +36,27 @@ class ListMurids extends ListRecords
             'Kelas 5' => Tab::make()
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('kelas', '5')),
             'Kelas 6' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('kelas', '6')),  
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('kelas', '6')),
             'Alumni' => Tab::make()
-                ->modifyQueryUsing(fn (Builder $query) => $query->where('kelas', '7')),              
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('kelas', '7')),
         ];
     }
+    public function getTabs(): array
+{
+    return [
+        'Semua Kelas' => Tab::make(),
+        'Kelas 1' => Tab::make()
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('kelas', '1')),
+        'Kelas 2' => Tab::make()
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('kelas', '2')),
+        'Kelas 3' => Tab::make()
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('kelas', '3')),
+        'Kelas 4' => Tab::make()
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('kelas', '4')),
+        'Kelas 5' => Tab::make()
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('kelas', '5')),
+        'Kelas 6' => Tab::make()
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('kelas', '6')),
+    ];
+}
 }

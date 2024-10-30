@@ -16,6 +16,7 @@ use Filament\Tables;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -36,10 +37,17 @@ class MuridResource extends Resource
                 TextInput::make('nisn'),
                 TextInput::make('nik'),
                 TextInput::make('nama'),
-                TextInput::make('jenis_kelamin'),
+                Select::make('jenis_kelamin')
+                ->options([
+                    1 => 'Perempuan',
+                    0 => 'Laki-Laki',
+                ])
+                ->required()
+                ->placeholder(''),
+
                 TextInput::make('alamat'),
-                DatePicker::make('tempat_lahir'),
-                TextInput::make('tanggal_lahir'),
+                DatePicker::make('tanggal_lahir'),
+                TextInput::make('tempat_lahir'),
                 TextInput::make('asal_sekolah'),
                 TextInput::make('kelas'),
                 DatePicker::make('tanggal_masuk'),
@@ -55,6 +63,7 @@ class MuridResource extends Resource
             ->columns([
                 TextColumn::make('nis')->visibleFrom('md'),
                 TextColumn::make('nama'),
+                TextColumn::make('kelas'),
                 TextColumn::make('jenis_kelamin')
                 ->getStateUsing(function ($record) {
                     return $record->jenis_kelamin == 0 ? 'Laki-laki' : 'Perempuan';
@@ -65,9 +74,11 @@ class MuridResource extends Resource
                 })
 
             ])
-            ->filters([
-                //
+            ->headerActions([
+                ExportAction::make()
+                    ->exporter(MuridExporter::class)
             ])
+
             ->actions([
             Tables\Actions\EditAction::make(),
             Tables\Actions\ViewAction::make(),
