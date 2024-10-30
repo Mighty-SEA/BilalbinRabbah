@@ -19,7 +19,7 @@
 
         <!-- Links -->
         <ul class="hidden md:flex space-x-4">
-            <li><a href="{{url('/index')}}" class="hover:text-green-500">Beranda</a></li>
+            <li><a href="{{url('/')}}" class="hover:text-green-500">Beranda</a></li>
             <li><a href="{{url('/profil')}}" class="hover:text-green-500">Profil</a></li>
             <li><a href="{{url('/kurikulum')}}" class="hover:text-green-500">Kurikulum</a></li>
         </ul>
@@ -205,7 +205,7 @@
     <!-- Content inside the overlay -->
     <div class="relative bg-white bg-opacity-80 p-4 rounded-lg">
         <h3 class="text-xl font-semibold text-gray-800">Murid Terdaftar</h3>
-        <p class="text-4xl font-bold text-green-600">{{ $muridterdaftar }}</p>
+        <p class="text-4xl font-bold text-green-600">{{$muridterdaftar}}</p>
     </div>
 </a>
 
@@ -220,7 +220,7 @@
     <!-- Content inside the overlay -->
     <div class="relative bg-white bg-opacity-80 p-4 rounded-lg">
         <h3 class="text-xl font-semibold text-gray-800">Murid Lulus</h3>
-        <p class="text-4xl font-bold text-green-600">{{ $muridlulus }}</p>
+        <p class="text-4xl font-bold text-green-600">{{$muridlulus}}</p>
     </div>
 </a>
 

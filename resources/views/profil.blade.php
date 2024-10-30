@@ -20,7 +20,7 @@
 
         <!-- Links -->
         <ul class="hidden md:flex space-x-4">
-            <li><a href="{{url('/index')}}" class="hover:text-green-500">Beranda</a></li>
+            <li><a href="{{url('/')}}" class="hover:text-green-500">Beranda</a></li>
             <li><a href="{{url('/profil')}}" class="hover:text-green-500">Profil</a></li>
             <li><a href="{{url('/kurikulum')}}" class="hover:text-green-500">Kurikulum</a></li>
         </ul>
@@ -150,7 +150,7 @@
 
             <!-- Maps -->
             <div class="flex justify-center md:justify-center md:w-1/3">
-                <iframe 
+                <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.022166473516!2d107.60545887409043!3d-7.006672568627507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e98b5d3428cb%3A0x5bdf1858a8fa5e17!2sMDT%20Bilal%20Bin%20Rabbah!5e0!3m2!1sen!2sid!4v1730188636230!5m2!1sen!2sid"
                     width="400" height="150" class="border-0" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
