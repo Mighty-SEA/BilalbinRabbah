@@ -26,8 +26,8 @@ class PemasukanResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('id_pengeluaran'),
-                TextInput::make('nama_pengeluaran'),
+                TextInput::make('id_pemasukan'),
+                TextInput::make('nama_pemasukan'),
                 TextInput::make('uang'),
                 DatePicker::make('tanggal')
             ]);
@@ -37,8 +37,8 @@ class PemasukanResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id_pengeluaran'),
-                TextColumn::make('nama_pengeluaran'),
+                TextColumn::make('id_pemasukan'),
+                TextColumn::make('nama_pemasukan'),
                 TextColumn::make('uang'),
                 TextColumn::make('tanggal')
             ])
