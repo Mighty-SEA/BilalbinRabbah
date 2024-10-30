@@ -13,6 +13,6 @@ class LandingController extends Controller
         $muridlulus = Landing::where('kelas', '7')->count();
         $muridterdaftar = Landing::count();
 
-        return view('index', compact('muridlulus', 'muridterdaftar'));
+        return view('landingpages.index', compact('muridlulus', 'muridterdaftar'));
     }
 }
