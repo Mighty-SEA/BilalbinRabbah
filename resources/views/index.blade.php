@@ -158,31 +158,31 @@
                         <label for="nama" class="block text-gray-700 font-medium">Nama</label>
                         <input type="text" id="nama" name="nama" class="mt-1 block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Nama lengkap" required>
                     </div>
-                    
+
                     <!-- Kelas -->
                     <div>
                         <label for="kelas" class="block text-gray-700 font-medium">Kelas</label>
                         <input type="text" id="kelas" name="kelas" class="mt-1 block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Kelas" required>
                     </div>
-                    
+
                     <!-- Asal Sekolah -->
                     <div>
                         <label for="asal_sekolah" class="block text-gray-700 font-medium">Asal Sekolah</label>
                         <input type="text" id="asal_sekolah" name="asal_sekolah" class="mt-1 block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Nama sekolah asal" required>
                     </div>
-                    
+
                     <!-- Alamat -->
                     <div>
                         <label for="alamat" class="block text-gray-700 font-medium">Alamat</label>
                         <textarea id="alamat" name="alamat" rows="3" class="mt-1 block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Alamat lengkap" required></textarea>
                     </div>
-                    
+
                     <!-- Nomor Telepon -->
                     <div>
                         <label for="nomor_telepon" class="block text-gray-700 font-medium">Nomor Telepon</label>
                         <input type="tel" id="nomor_telepon" name="nomor_telepon" class="mt-1 block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Nomor telepon aktif" required>
                     </div>
-                    
+
                     <!-- Submit Button -->
                     <div class="text-center">
                         <button type="submit" class="px-6 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-150">Daftar Sekarang</button>
@@ -194,32 +194,32 @@
             <div class="flex flex-col space-y-4">
                 <!-- Card Murid Terdaftar -->
 <!-- Card Murid Terdaftar -->
-<a href="#murid-terdaftar" 
+<a href="#murid-terdaftar"
    class="relative bg-cover bg-center p-6 rounded-lg shadow-lg flex-grow flex items-center justify-center transition-transform transform hover:scale-105"
    style="background-image: url('asset/image4.jpg');">
-   
+
     <!-- Green overlay with reduced opacity on background -->
     <div class="absolute inset-0 bg-green-950 opacity-70 rounded-lg"></div>
 
     <!-- Content inside the overlay -->
     <div class="relative bg-white bg-opacity-80 p-4 rounded-lg">
         <h3 class="text-xl font-semibold text-gray-800">Murid Terdaftar</h3>
-        <p class="text-4xl font-bold text-green-600">120</p>
+        <p class="text-4xl font-bold text-green-600">{{ $muridterdaftar }}</p>
     </div>
 </a>
 
 <!-- Card Murid Lulus -->
-<a href="#murid-lulus" 
+<a href="#murid-lulus"
    class="relative bg-cover bg-center p-6 rounded-lg shadow-lg flex-grow flex items-center justify-center transition-transform transform hover:scale-105"
    style="background-image: url('asset/image5.jpg');">
-   
+
     <!-- Green overlay with reduced opacity on background -->
     <div class="absolute inset-0 bg-green-950 opacity-70 rounded-lg"></div>
 
     <!-- Content inside the overlay -->
     <div class="relative bg-white bg-opacity-80 p-4 rounded-lg">
         <h3 class="text-xl font-semibold text-gray-800">Murid Lulus</h3>
-        <p class="text-4xl font-bold text-green-600">80</p>
+        <p class="text-4xl font-bold text-green-600">{{ $muridlulus }}</p>
     </div>
 </a>
 
@@ -246,13 +246,13 @@
         <!-- Maps -->
         <div class="md:w-1/3 flex justify-center">
             <!-- Tambahkan peta Google Maps menggunakan iframe -->
-            <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.022166473516!2d107.60545887409043!3d-7.006672568627507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e98b5d3428cb%3A0x5bdf1858a8fa5e17!2sMDT%20Bilal%20Bin%20Rabbah!5e0!3m2!1sen!2sid!4v1730188636230!5m2!1sen!2sid" 
-                width="350" 
-                height="150" 
-                style="border:0;" 
-                allowfullscreen="" 
-                aria-hidden="false" 
+            <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.022166473516!2d107.60545887409043!3d-7.006672568627507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e98b5d3428cb%3A0x5bdf1858a8fa5e17!2sMDT%20Bilal%20Bin%20Rabbah!5e0!3m2!1sen!2sid!4v1730188636230!5m2!1sen!2sid"
+                width="350"
+                height="150"
+                style="border:0;"
+                allowfullscreen=""
+                aria-hidden="false"
                 tabindex="0">
             </iframe>
         </div>

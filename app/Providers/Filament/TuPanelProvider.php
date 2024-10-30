@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\LineChart;
 use App\Filament\Widgets\StatsOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -37,9 +38,9 @@ class TuPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->databaseNotifications()
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                StatsOverview::class
+                StatsOverview::class,
+                LineChart::class
             ])
             ->middleware([
                 EncryptCookies::class,
