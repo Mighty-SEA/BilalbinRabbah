@@ -18,6 +18,4 @@ Route::get('/', [LandingController::class, 'index']);
 Route::get('/profil', function () {
     return view('landingpages.profil');
 });
-Route::get('/kurikulum', function () {
-    return view('landingpages.kurikulum');
-});
+Route::get('/kurikulum', [LandingController::class, 'kurikulum']);

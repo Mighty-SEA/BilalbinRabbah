@@ -11,7 +11,6 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\BulkAction;
@@ -22,6 +21,12 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Collection;
+use App\Imports\MuridImport;
+use Filament\Actions\Action as ActionsAction;
+use Maatwebsite\Excel\Facades\Excel;
+use Filament\Forms\Components\FileUpload;
+use Filament\Notifications\Notification;
+use Filament\Pages\Actions\Action;
 
 class MuridResource extends Resource
 {
@@ -81,6 +86,7 @@ class MuridResource extends Resource
             ])
 
             ->actions([
+                
             Tables\Actions\EditAction::make(),
             Tables\Actions\ViewAction::make(),
             ])
@@ -130,4 +136,5 @@ class MuridResource extends Resource
             'edit' => Pages\EditMurid::route('/{record}/edit'),
         ];
     }
+    
 }

@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Spp extends Model
+class spp extends Model
 {
+    protected $table='spp';
+    protected $guarded=[];
+
     use HasFactory;
-    protected $table = 'spp';
-    protected $guarded = [];
 
-
-    public function Murid(){
-        return $this->belongsTo(Murid::class , 'nis' , 'nis');
+    public function murid(){
+        return $this->belongsTo(murid::class, 'nis', 'nis');
     }
 }
